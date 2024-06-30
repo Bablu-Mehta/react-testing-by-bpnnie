@@ -23,3 +23,17 @@ test("button click flow.", () => {
   //check the button color.
   expect(buttonElement).toHaveClass("blue");
 });
+
+test("checkbox flow", () => {
+  render(<App />);
+
+  //find elements
+  const buttonElement = screen.getByRole("button", { name: /blue/i });
+  const checkboxElement = screen.getByRole("checkbox", {
+    name: /disable button/i,
+  });
+
+  //checkbox initial conditions
+  expect(buttonElement).toBeEnabled();
+  expect(checkboxElement).not.toBeChecked();
+});
