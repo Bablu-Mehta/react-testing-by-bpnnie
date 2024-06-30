@@ -36,4 +36,12 @@ test("checkbox flow", () => {
   //checkbox initial conditions
   expect(buttonElement).toBeEnabled();
   expect(checkboxElement).not.toBeChecked();
+
+  //clicking the checkbox and check for disabled button in dom
+  fireEvent.click(checkboxElement);
+  expect(buttonElement).toBeDisabled();
+
+  //clicking the checkbox again and checking for enabled button in the dom.
+  fireEvent.click(checkboxElement);
+  expect(buttonElement).toBeEnabled();
 });
