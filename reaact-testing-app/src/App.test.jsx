@@ -13,7 +13,7 @@ test("button click flow.", () => {
   const buttonElement = screen.getByRole("button", { name: /blue/i });
 
   //check the initial color
-  expect(buttonElement).toHaveClass("red");
+  expect(buttonElement).toHaveClass("medium-violet-red");
 
   //click the button
   fireEvent.click(buttonElement);
@@ -22,7 +22,7 @@ test("button click flow.", () => {
   expect(buttonElement).toHaveTextContent(/red/i);
 
   //check the button color.
-  expect(buttonElement).toHaveClass("blue");
+  expect(buttonElement).toHaveClass("midnight-blue");
 });
 
 test("checkbox flow", () => {
@@ -46,7 +46,7 @@ test("checkbox flow", () => {
   //clicking the checkbox again and checking for enabled button in the dom.
   fireEvent.click(checkboxElement);
   expect(buttonElement).toBeEnabled();
-  expect(buttonElement).toHaveClass("red");
+  expect(buttonElement).toHaveClass("medium-violet-red");
 });
 
 test("checkbox flow after the button has been clicked", () => {
@@ -60,7 +60,7 @@ test("checkbox flow after the button has been clicked", () => {
 
   //click the button
   fireEvent.click(buttonElement);
-  expect(buttonElement).toHaveClass("blue");
+  expect(buttonElement).toHaveClass("midnight-blue");
 
   //click the check box to disable the button
   fireEvent.click(checkboxElement);
@@ -70,7 +70,7 @@ test("checkbox flow after the button has been clicked", () => {
   //click the button to enable the button
   fireEvent.click(checkboxElement);
   expect(buttonElement).toBeEnabled();
-  expect(buttonElement).toHaveClass("blue");
+  expect(buttonElement).toHaveClass("midnight-blue");
 });
 
 describe("kebabCaseToTitleCase", () => {
