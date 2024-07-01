@@ -2,9 +2,9 @@ import "./App.css";
 import { useState } from "react";
 
 function App() {
-  const [buttonColor, setButtonColor] = useState("red");
+  const [buttonColor, setButtonColor] = useState("medium-violet-red");
   const [disabled, setDisabled] = useState(false);
-  const nextColor = buttonColor === "red" ? "blue" : "red";
+  const nextColor = buttonColor === "medium-violet-red" ? "midnight-blue" : "medium-violet-red";
   const className = disabled ? "grey" : buttonColor;
 
   return (

@@ -2,6 +2,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 // import { logRoles } from "@testing-library/dom";
 import App from "./App";
 import { expect } from "vitest";
+import { kebabCaseToTitleCase } from "./helper";
 
 test("button click flow.", () => {
   //render the App
@@ -48,7 +49,7 @@ test("checkbox flow", () => {
   expect(buttonElement).toHaveClass("red");
 });
 
-test("checkbox flow after the button has been clicked", ()=>{
+test("checkbox flow after the button has been clicked", () => {
   render(<App />);
 
   //find elements
@@ -70,5 +71,16 @@ test("checkbox flow after the button has been clicked", ()=>{
   fireEvent.click(checkboxElement);
   expect(buttonElement).toBeEnabled();
   expect(buttonElement).toHaveClass("blue");
+});
 
-})
+describe("kebabCaseToTitleCase", () => {
+  test("should works for no hyphens", () => {
+    expect(kebabCaseToTitleCase("red")).toBe("Red");
+  });
+  test("should works for one hyphens", () => {
+    expect(kebabCaseToTitleCase("midnight-blue")).toBe("Midnight Blue");
+  });
+  test("should works for multiple hyphens", () => {
+    expect(kebabCaseToTitleCase("medium-violet-red")).toBe("Medium Violet Red");
+  });
+});
