@@ -1,6 +1,7 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import SummaryForm from "../summary/SummaryForm";
 import { expect, test } from "vitest";
+import userEvent from "@testing-library/user-event";
 
 test("should check initial conditions", () => {
   render(<SummaryForm />);
@@ -14,7 +15,8 @@ test("should check initial conditions", () => {
   expect(confirmButton).toBeDisabled();
 });
 
-test("should checkbox enables button on first click and disables on second click.", () => {
+test("should checkbox enables button on first click and disables on second click.", async () => {
+  const user = userEvent.setup();
   render(<SummaryForm />);
 
   const checkbox = screen.getByRole("checkbox", {
@@ -22,9 +24,19 @@ test("should checkbox enables button on first click and disables on second click
   });
   const confirmButton = screen.getByRole("button", { name: /confirm order/i });
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(confirmButton).toBeEnabled();
 
-  fireEvent.click(checkbox);
+  await user.click(checkbox);
   expect(confirmButton).toBeDisabled();
 });
+
+test("popover responds to hover", async()=>{
+  const user = userEvent.setup();
+
+  //popover starts out hidden
+
+  //popover appears on mouseover of checkbox label
+
+  //popover disappear when mouse out
+})
