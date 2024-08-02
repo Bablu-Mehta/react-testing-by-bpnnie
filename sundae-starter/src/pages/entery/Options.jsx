@@ -19,7 +19,7 @@ export default function Options({ optionType }) {
   //TODO: replace 'null' with ToppingOption when available
   const ItemComponent = optionType === "scoops" ? ScoopOption : null;
 
-  const optionItems = items.map((item) => (
+  const OptionItems = items.map((item) => (
     <ItemComponent
       key={item?.name}
       name={item?.name}
@@ -29,7 +29,7 @@ export default function Options({ optionType }) {
 
   return (
     <Row>
-      <optionItems />
+      <OptionItems />
     </Row>
   );
 }
