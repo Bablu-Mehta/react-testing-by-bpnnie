@@ -1,7 +1,7 @@
 import React from 'react'
 import Options from './Options'
 
-const OrderEntery = () => {
+const OrderEntry = () => {
   return (
     <div>
         <Options optionType='scoops'/>
@@ -10,4 +10,4 @@ const OrderEntery = () => {
   )
 }
 
-export default OrderEntery
+export default OrderEntry
