@@ -1,8 +1,8 @@
 import { http, HttpResponse } from "msw";
 import { server } from "../../../mocks/server";
 
-import { render, screen } from "@testing-library/react";
-import OrderEntery from "../OrderEntery";
+import { render, screen } from "../../../test-utils/testing-library-utils";
+import OrderEntry from "../OrderEntry";
 import { expect } from "vitest";
 
 test("should handles error for scoops and toppings routes", async () => {
@@ -15,7 +15,7 @@ test("should handles error for scoops and toppings routes", async () => {
     })
   );
 
-  render(<OrderEntery />);
+  render(<OrderEntry />);
 
   const alerts = await screen.findAllByRole("alert");
 
