@@ -37,7 +37,7 @@ test("update toppings subtotal when toppings change.", async () => {
   render(<Options optionType="toppings" />);
 
   //make sure total starts out at $0.00
-  const toppingsTotal = screen.getByText("Topping total: $", { exact: false });
+  const toppingsTotal = screen.getByText("Toppings total: $", { exact: false });
   expect(toppingsTotal).toHaveTextContent("0.00");
 
   //add cherries  and check total
