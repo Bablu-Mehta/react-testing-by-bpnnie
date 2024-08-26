@@ -10,4 +10,4 @@ const OrderEntry = () => {
   )
 }
 
-export default OrderEntry
+export default OrderEntry;

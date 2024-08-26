@@ -2,6 +2,7 @@ import { render, screen } from "../../../test-utils/testing-library-utils";
 import userEvent from "@testing-library/user-event";
 import Options from "../Options";
 import { expect } from "vitest";
+import OrderEntry from "../OrderEntry";
 
 test("should update scoop subtotal when scoops changes", async () => {
   const user = userEvent.setup();
@@ -50,9 +51,47 @@ test("update toppings subtotal when toppings change.", async () => {
   //add hot fudge and check subTotal
   const hotFudgeCheckbox = screen.getByRole("checkbox", { name: "Hot fudge" });
   await user.click(hotFudgeCheckbox);
-  expect(toppingsTotal).toHaveTextContent('3.00');
+  expect(toppingsTotal).toHaveTextContent("3.00");
 
   //remove hot fudge and check subtotal
   await user.click(hotFudgeCheckbox);
   expect(toppingsTotal).toHaveTextContent("1.50");
+});
+
+describe("grand total", () => {
+  test("should grand total starts at $0.00", () => {
+    render(<OrderEntry />);
+    const grandTotal = screen.getByRole("heading", {
+      name: /Grand total: \$/i,
+    });
+    expect(grandTotal).toHaveTextContent("0.00");
+  });
+
+  test("should update properly if scoop is added first", async () => {
+    const user = userEvent.setup();
+
+    render(<OrderEntry />);
+    const grandTotal = screen.getByRole("heading", {
+      name: /Grand Total: \$/i,
+    });
+
+    //update vanilla scoops 2 and check grand total
+    const vanillaInput = await screen.findByRole("spinbutton", {
+      name: "Vanilla",
+    });
+    await user.clear(vanillaInput);
+    await user.type(vanillaInput, "2");
+    expect(grandTotal).toHaveTextContent("4.00");
+
+    //add cherries and check grand total
+    const cherriesCheckBox = await screen.findByRole("checkbox", {
+      name:"Cherries",
+    });
+    await user.click(cherriesCheckBox);
+    expect(grandTotal).toHaveTextContent("5.50");
+  });
+
+  
+  test("should update properly if topping is added first", () => {});
+  test("should grand total updates properly if item is removed", () => {});
 });
