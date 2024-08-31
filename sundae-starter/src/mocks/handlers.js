@@ -17,8 +17,9 @@ export const handlers = [
     ]);
   }),
 
-  http.post("http://localhost:3030/toppings", async() => {
-    await delay(400);
-    return HttpResponse.json(, {status: 201});
+  http.post("http://localhost:3030/order", async() => {
+    // add a 100ms pause here to give the tests a chance to see the "loading" state
+    await delay(100);
+    return HttpResponse.json({orderNumber: 123455676}, {status: 201});
   }),
 ];
